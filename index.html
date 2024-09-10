@@ -5,9 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Clock</title>
     <style>
-      .city-time{
+      select {
+        width: 400px;
+        height: 40px;
+        font-weight: bold;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      .city-time {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .time {
+        font-size: 40px;
+      }
+      .date {
+        font-size: 15px;
+        opacity: 0.7;
+      }
+      .city-time {
+        font-size: 20px;
+      }
+      .container {
+        padding: 30px;
+        border-radius: 10px;
+        width: 400px;
+        height: 550px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 70px;
+        background-color: white;
+        box-shadow: 10px 10px 10px #a8a8a8;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: #f4f5fc;
+      }
+      hr {
+        border-style: dashed;
       }
     </style>
   </head>
@@ -16,39 +56,57 @@
       <h1>World Clocks</h1>
       <select name="" id="">
         <option value="">Choose city...</option>
+        <option value="Auckland">Auckland</option>
+        <option value="London">London</option>
+        <option value="New york">New York</option>
       </select>
-      <div class="city-time">
-        <div class="city">Los Angeles</div>
-        <div class="time">1:48:15</div>
-      </div>
+      <br />
+      <br />
       <br />
       <div class="city-time">
-        <div class="city">Sydney</div>
-        <div class="time">1:45:16</div>
+        <div class="city-date">
+          <div class="city"><strong>Los Angeles</strong></div>
+          <div class="date">10 Sep 2024</div>
+        </div>
+        <div class="time"><strong>1:48:15</strong></div>
       </div>
-      <br />
-      <div class="city-time">
-        <div class="city">Tokyo</div>
-        <div class="time">1:13:05</div>
-      </div>
-      <br />
-      <div class="city-time">
-        <div class="city">Paris</div>
-        <div class="time">1:56:02</div>
-      </div>
-    </div>
-    <br>
-    <br>
-    <br>
+      <hr />
 
-    <footer>
-      This project was coded by
-      <a href="" target="_blank">Tsamaile Lebitsa</a> and
-      <a
-        href="https://github.com/Tsamaile1/World-clock/blob/main/index.html"
-        target="_blank"
-        >is open-souced on Github</a
-      >
-    </footer>
+      <div class="city-time">
+        <div class="city-date">
+          <div class="city"><strong>Sydney</strong></div>
+          <div class="date">10 Sep 2024</div>
+        </div>
+        <div class="time"><strong>1:45:16</strong></div>
+      </div>
+      <hr />
+      <div class="city-time">
+        <div class="city-date">
+          <div class="city"><strong>Tokyo</strong></div>
+          <div class="date">10 Sep 2024</div>
+        </div>
+        <div class="time"><strong>1:13:05</strong></div>
+      </div>
+      <hr />
+      <div class="city-time">
+        <div class="city-date">
+          <div class="city"><strong>Paris</strong></div>
+          <div class="date">10 Sep 2024</div>
+        </div>
+        <div class="time"><strong>1:56:02</strong></div>
+      </div>
+      <br />
+      <br />
+
+      <footer>
+        This project was coded by
+        <a href="" target="_blank">Tsamaile Lebitsa</a> and
+        <a
+          href="https://github.com/Tsamaile1/World-clock/blob/main/index.html"
+          target="_blank"
+          >is open-souced on Github</a
+        >
+      </footer>
+    </div>
   </body>
 </html>
