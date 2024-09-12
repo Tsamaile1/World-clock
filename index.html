@@ -29,9 +29,8 @@
       }
       .date {
         font-size: 15px;
-        ;
       }
-      
+
       .city-time {
         font-size: 20px;
       }
@@ -47,7 +46,7 @@
         background-image: url(https://media.istockphoto.com/id/1343087913/photo/abstract-clock-deal-over-white-wall-realistic-3d.jpg?s=612x612&w=0&k=20&c=QSd9EkN263I5dbJKeRruhV5dSkooK0CV5Wo9pvx2Axg=);
         box-shadow: 10px 10px 10px #a8a8a8;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color:black
+        color: black;
       }
       body {
         background-color: #f4f5fc;
@@ -60,41 +59,43 @@
   <body>
     <div class="container">
       <h1>World Clocks</h1>
-      <select name="" id="">
+      <select name="" id="city">
         <option value="">Choose city...</option>
-        <option value="Auckland">Auckland</option>
-        <option value="London">London</option>
-        <option value="New york">New York</option>
+        <option value="Pacific/Auckland">Auckland</option>
+        <option value="Europe/London">London</option>
+        <option value="America/New_york">New York</option>
       </select>
       <br />
       <br />
       <br />
-      <div class="city-time">
-        <div class="city-date">
-          <div class="city"><strong>Los Angeles</strong></div>
-          <div class="date" id="current-date"></div>
+      <div id="cities">
+        <div class="city-time">
+          <div class="city-date">
+            <div class="city"><strong>Los Angeles</strong></div>
+            <div class="date" id="current-date"></div>
+          </div>
+          <div class="time" id="la-time"><strong></strong></div>
         </div>
-        <div class="time" id="la-time"><strong></strong></div>
+        <hr />
+
+        <div class="city-time">
+          <div class="city-date">
+            <div class="city"><strong>Sydney</strong></div>
+            <div class="date" id="current-date2"></div>
+          </div>
+          <div class="time" id="syd-time"><strong>1:45:16</strong></div>
+        </div>
+        <hr />
+        <div class="city-time">
+          <div class="city-date">
+            <div class="city"><strong>Tokyo</strong></div>
+            <div class="date" id="current-date3"></div>
+          </div>
+          <div class="time" id="tok-time"><strong>1:13:05 </strong></div>
+        </div>
       </div>
       <hr />
 
-      <div class="city-time">
-        <div class="city-date">
-          <div class="city"><strong>Sydney</strong></div>
-          <div class="date" id="current-date2"></div>
-        </div>
-        <div class="time" id="syd-time"><strong>1:45:16</strong></div>
-      </div>
-      <hr />
-      <div class="city-time">
-        <div class="city-date">
-          <div class="city"><strong>Tokyo</strong></div>
-          <div class="date" id="current-date3"></div>
-        </div>
-        <div class="time" id="tok-time"><strong>1:13:05 </strong></div>
-      </div>
-      <hr />
-      
       <br />
       <br />
 
@@ -126,13 +127,31 @@
         let sydDate = moment().format("dddd D MMMM YYYY");
         sydDateElement.innerHTML = currentDate;
 
-        let tokElement = moment().tz("Asia/Tokyo").format("H:mm:ss:SS a");
+        let tokElement = moment().tz("Asia/Tokyo").format("H:mm:ss:ss a");
         let tokToday = document.querySelector("#tok-time");
         tokToday.innerHTML = tokElement;
         let tokDateeElement = document.querySelector("#current-date3");
         let toDate = moment().format("dddd D MMMM YYYY");
         tokDateeElement.innerHTML = currentDate;
       }, 1);
+
+      function updateCity(event) {
+        let cityTimeZone = event.target.value;
+        let cityName=cityTimeZone.replace("_", " ").split("/")[1];
+        let cityTime = moment().tz(cityTimeZone);
+        let citiesElement = document.querySelector("#cities");
+        citiesElement.innerHTML = `
+        <div class="city-time">
+          <div class="city-date">
+            <div class="city"><strong>${cityTimeZone}</strong></div>
+            <div class="date" id="current-date">${cityTime.format("dddd D MMMM YYYY")}</div>
+          </div>
+          <div class="time" id="la-time"><strong>${cityTime.format("H:mm:ss:ss a")}</strong></div>
+        </div>
+        `;
+      }
+      let citySelectElement = document.querySelector("#city");
+      citySelectElement.addEventListener("change", updateCity);
     </script>
   </body>
 </html>
