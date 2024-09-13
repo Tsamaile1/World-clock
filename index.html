@@ -61,6 +61,7 @@
       <h1>World Clocks</h1>
       <select name="" id="city">
         <option value="">Choose city...</option>
+        <option value="current">My current location</option>
         <option value="Pacific/Auckland">Auckland</option>
         <option value="Europe/London">London</option>
         <option value="America/New_york">New York</option>
@@ -113,21 +114,21 @@
       setInterval(function () {
         let currentElement = moment()
           .tz("America/Los_Angeles")
-          .format("H:mm:ss:SS a");
+          .format("H:mm:ss a");
         let today = document.querySelector("#la-time");
         today.innerHTML = currentElement;
         let currentDateElement = document.querySelector("#current-date");
         let currentDate = moment().format("dddd D MMMM YYYY");
         currentDateElement.innerHTML = currentDate;
 
-        let sydElement = moment().tz("Australia/Sydney").format("H:mm:ss:SS a");
+        let sydElement = moment().tz("Australia/Sydney").format("H:mm:ss a");
         let sydToday = document.querySelector("#syd-time");
         sydToday.innerHTML = sydElement;
         let sydDateElement = document.querySelector("#current-date2");
         let sydDate = moment().format("dddd D MMMM YYYY");
         sydDateElement.innerHTML = currentDate;
 
-        let tokElement = moment().tz("Asia/Tokyo").format("H:mm:ss:ss a");
+        let tokElement = moment().tz("Asia/Tokyo").format("H:mm:ss a");
         let tokToday = document.querySelector("#tok-time");
         tokToday.innerHTML = tokElement;
         let tokDateeElement = document.querySelector("#current-date3");
@@ -137,6 +138,9 @@
 
       function updateCity(event) {
         let cityTimeZone = event.target.value;
+        if (cityTimeZone === "current") {
+          cityTimeZone=moment.tz.guess()
+        };
         let cityName=cityTimeZone.replace("_", " ").split("/")[1];
         let cityTime = moment().tz(cityTimeZone);
         let citiesElement = document.querySelector("#cities");
@@ -146,10 +150,11 @@
             <div class="city"><strong>${cityTimeZone}</strong></div>
             <div class="date" id="current-date">${cityTime.format("dddd D MMMM YYYY")}</div>
           </div>
-          <div class="time"><strong>${cityTime.format("H:mm:ss:ss a")}</strong></div>
+          <div class="time"><strong>${cityTime.format("H:mm:ss a")}</strong></div>
         </div>
         `;
-      }
+        
+      };
       let citySelectElement = document.querySelector("#city");
       citySelectElement.addEventListener("change", updateCity);
     </script>
